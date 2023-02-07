@@ -1,6 +1,6 @@
 import create from "zustand";
 
-const useVoucherStore = create((set) => ({
+const useRecoveryStore = create((set) => ({
   createStep: 1,
   fetching: false,
   roleName: "",
@@ -35,11 +35,11 @@ const useVoucherStore = create((set) => ({
       accountDetails: data,
     })),
 
-  voucherDetails: {},
+  recoveryDetails: {},
 
-  setVoucherDetails: (data: object) =>
+  setRecoveryDetails: (data: object) =>
     set((state: any) => ({
-      voucherDetails: data,
+      recoveryDetails: data,
     })),
 
   sharableDigest: "",
@@ -48,4 +48,4 @@ const useVoucherStore = create((set) => ({
       sharableDigest: digest,
     })),
 }));
-export default useVoucherStore;
+export default useRecoveryStore;

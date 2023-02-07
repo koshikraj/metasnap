@@ -99,10 +99,10 @@ export const useStyles = createStyles((theme) => ({
   },
 
   voucherImage: {
-    backgroundImage: `url("/images/voucher.svg")`,
+    // backgroundImage: `url("/images/voucher.svg")`,
     position: "relative",
     width: "100%",
-    height: "200px",
+    height: "150px",
     backgroundRepeat: "no-repeat",
     backgroundSize: "cover",
     borderRadius: "8px",
@@ -145,5 +145,15 @@ export const useStyles = createStyles((theme) => ({
   voucherTextBlue: {
     color: "transparent",
     textShadow: "0 0 5px rgba(255,255,255,0.9)",
+  },
+  imageContainer: {
+    maxWidth: "250px",
+    minHeight: "180px",
+    background: "#F2F1FF",
+    position: "relative",
+    padding: "2px",
+    margin: "2px",
+    borderTopRightRadius: "4px",
+    borderTopLeftRadius: "4px",
   },
 }));

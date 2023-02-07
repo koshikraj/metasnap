@@ -76,7 +76,7 @@ export const CallBackScreen = (props: any) => {
       await accountService.loadAccount(magiclinkService.web3Provider);
       const account = await accountService.login();
       if (account.hasData()) {
-        navigate(RoutePath.vouchers);
+        navigate(RoutePath.recovery);
       } else {
         accountStore.setError(
           account.getErrorMessage(),

@@ -21,7 +21,7 @@ import {
   IconBrandGithub,
 } from "@tabler/icons";
 
-import useVoucherStore from "store/voucher/voucher.store";
+import useRecoveryStore from "store/recovery/recovery.store";
 
 const useStyles = createStyles((theme) => ({
   nav: {
@@ -96,7 +96,7 @@ export const Navbar = () => {
   const { colorScheme, toggleColorScheme } = useMantineColorScheme();
 
   const { setCreateStep, setFormData } =
-  useVoucherStore((state: any) => state);
+  useRecoveryStore((state: any) => state);
   const theme = useMantineTheme();
   const dark = colorScheme === "dark";
 
@@ -109,7 +109,7 @@ export const Navbar = () => {
         <div className={classes.maincontainer}>
           <Image
             onClick={() => {
-              navigate(RoutePath.vouchers);
+              navigate(RoutePath.recovery);
               setFormData({});
               setCreateStep(1);
             }}

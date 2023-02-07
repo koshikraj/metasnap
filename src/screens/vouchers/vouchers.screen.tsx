@@ -9,7 +9,7 @@ import { RoutePath } from "navigation";
 import { useStores } from "store";
 //@ts-ignore
 import EmptyState from "../../assets/images/empty.svg";
-import useVoucherStore from "store/voucher/voucher.store";
+import useRecoveryStore from "store/recovery/recovery.store";
 import { useServices } from "services";
 import { Wallet } from "utils";
 import { utils } from "ethers";
@@ -21,7 +21,7 @@ export const VouchersScreen = () => {
   const wallet = new Wallet();
   const { safeService } = useServices();
   const { accountStore } = useStores();
-  const { setFetching, setVoucherDetails } = useVoucherStore(
+  const { setFetching, setRecoveryDetails } = useRecoveryStore(
     (state: any) => state
   );
 
@@ -30,14 +30,14 @@ export const VouchersScreen = () => {
   const voucherCardHandler = async (safeId: any) => {
     setFetching(true);
     // todo- add a check for creator and ben
-    navigate(RoutePath.voucherDetails);
+    navigate(RoutePath.recoveryDetails);
     const voucher = await safeService.get(safeId);
     const voucherSafe = await safeService.recover(safeId, "creator");
-    const redeemAccount = await wallet.load("polygontestnet", {
+    const redeemAccount = await wallet.load("polygon", {
       privateKey: voucherSafe.data?.privateKey!,
     });
     if (voucher !== undefined) {
-      setVoucherDetails({
+      setRecoveryDetails({
         wallet: wallet,
         amount: utils.formatEther(
           (await redeemAccount.data?.getBalance()!).toString()
@@ -48,7 +48,7 @@ export const VouchersScreen = () => {
         timeStamp: voucher.data?.timeStamp
       });
       setFetching(false);
-      navigate(RoutePath.voucherDetails);
+      navigate(RoutePath.recoveryDetails);
     }
   };
 
@@ -61,24 +61,24 @@ export const VouchersScreen = () => {
       />
       <Container className={classes.voucherScreenContainer}>
         <Container sx={{ padding: 0, marginTop: "42px" }}>
-          <Title text="Create or Redeem a Voucher" />
+          <Title text="Create Wallet Recovery" />
         </Container>
         <div className={classes.actionsContainer}>
           <GenericCard
             title="Create"
             name="add"
             onClick={() => {
-              navigate(RoutePath.createVoucher);
+              navigate(RoutePath.createRecovery);
             }}
           />
           <GenericCard
-            title="Redeem"
+            title="Recover"
             name="redeem"
             onClick={() => setModalActive(true)}
           />
         </div>
 
-        <Title text="My Vouchers" />
+        <Title text="My Wallets" />
 
         <div className={classes.vouchersContainer}>
           {!accountStore._safientUser?.safes.length && (
@@ -91,7 +91,7 @@ export const VouchersScreen = () => {
                     mt={"lg"}
                     onClick={() => navigate(RoutePath.login)}
                   >
-                    Login to see your vouchers
+                    Login to use MetaSnap
                   </Button>}
                 </Stack>
               </Center>

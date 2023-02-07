@@ -42,7 +42,7 @@ export class SafeServiceImpl extends Service implements SafeService {
 
       const safe = await this.accountStore.safient.createSafe(
         safeData,
-        beneficiary != null ? { did: beneficiary } : undefined,
+        beneficiary != null ? { email: beneficiary } : undefined,
         claimType != null
           ? {
               type: claimType,

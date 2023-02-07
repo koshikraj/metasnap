@@ -6,7 +6,7 @@ import {
   ProfileScreen,
   VouchersScreen,
   VoucherDetailsScreen,
-  CreateVoucherScreen,
+  CreateRecoveryScreen,
   LandingScreen,
   TeamsScreen,
   RegisterScreen,
@@ -22,25 +22,25 @@ export const Navigation = () => {
     <Routes>
       <Route path={RoutePath.login} element={<LoginScreen />} />
       <Route path={RoutePath.register} element={<RegisterScreen />} />
-      <Route path={RoutePath.vouchers} element={<VouchersScreen />} />
+      <Route path={RoutePath.recovery} element={<VouchersScreen />} />
 
       <Route
-        path={`${RoutePath.vouchers}/:code`}
+        path={`${RoutePath.recovery}/:code`}
         element={<RedeemVoucherScreen />}
       />
 
       <Route path={RoutePath.notFound} element={<NotFound />} />
       <Route path={RoutePath.callback} element={<CallBackScreen />} />
       <Route
-        path={RoutePath.voucherDetails}
+        path={RoutePath.recoveryDetails}
         element={<VoucherDetailsScreen />}
       />
 
       <Route element={<RequireAuth />}>
         <Route path={RoutePath.account} element={<ProfileScreen />} />
         <Route
-          path={RoutePath.createVoucher}
-          element={<CreateVoucherScreen />}
+          path={RoutePath.createRecovery}
+          element={<CreateRecoveryScreen />}
         />
 
         <Route path={RoutePath.walletSettings} element={<WalletSettings />} />

@@ -37,9 +37,9 @@ export function RegisterScreen(props: any) {
       setRegistering(true);
       const account = await accountService.register(name, email);
       if (account.hasData()) {
-        navigate(RoutePath.vouchers);
+        navigate(RoutePath.recovery);
       } else {
-        navigate(RoutePath.vouchers);
+        navigate(RoutePath.recovery);
         // TODO: ignoring ceramic network error
       }
       if (account.hasError()) {
@@ -64,7 +64,7 @@ export function RegisterScreen(props: any) {
     >
       <Paper radius="md" p="xl" sx={{ width: "500px" }} withBorder {...props}>
         <Text size="lg" weight={500}>
-          Welcome to Safient Vouchers 👋
+          Welcome to MetaSanp 👋
         </Text>
         <Box mt="md">
           <Text size="md">

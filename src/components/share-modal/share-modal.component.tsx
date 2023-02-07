@@ -9,7 +9,7 @@ import {
   TelegramIcon,
 } from "react-share";
 import { IconCopy } from "@tabler/icons";
-import useVoucherStore from "store/voucher/voucher.store";
+import useVoucherStore from "store/recovery/recovery.store";
 import { useClipboard } from "@mantine/hooks";
 import { showNotification } from "@mantine/notifications";
 

@@ -3,7 +3,7 @@ import { Image } from "../primitives/image/image.component";
 import { VoucherCardComponentProps } from "./voucher-card.component.props";
 import { useStyles } from "./voucher-card.component.styles";
 //@ts-ignore
-import Matic from "../../assets/icons/matic.svg";
+import Flask from "../../assets/icons/flask.svg";
 
 export const VoucherCard: React.FC<VoucherCardComponentProps> = (props) => {
   const { title, description, redeemed = false, source, onClick } = props;
@@ -11,7 +11,7 @@ export const VoucherCard: React.FC<VoucherCardComponentProps> = (props) => {
   return (
     <Card className={classes.container} onClick={onClick}>
       <Center className={classes.imageContainer}>
-        <Image src={Matic} alt="Doge" height={40} width={40} />
+        <Image src={Flask} alt="Doge" height={40} width={40} />
         {redeemed && <Badge className={classes.badge}>Redeemed</Badge>}
       </Center>
       <Container className={classes.description}>

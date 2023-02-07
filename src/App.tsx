@@ -4,6 +4,7 @@ import { MantineProvider, ColorSchemeProvider } from "@mantine/core";
 import { AppLayout } from "./components";
 import { LandingPageNavigation, Navigation } from "./navigation";
 import { useTheme } from "./hooks";
+import { MetaMaskContextProvider } from "context/metamask";
 
 function App() {
   const { colorScheme, toggleColorScheme } = useTheme();
@@ -14,6 +15,7 @@ function App() {
     return <LandingPageNavigation />;
 
   return (
+    <MetaMaskContextProvider>
     <ColorSchemeProvider
       colorScheme={colorScheme}
       toggleColorScheme={toggleColorScheme}
@@ -31,6 +33,7 @@ function App() {
         </AppLayout>
       </MantineProvider>
     </ColorSchemeProvider>
+    </MetaMaskContextProvider>
   );
 }
 

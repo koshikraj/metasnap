@@ -5,7 +5,7 @@ import { Title } from "../primitives/text/text.component";
 //@ts-ignore
 import { useNavigate } from "react-router-dom";
 import { RoutePath } from "navigation/route-path";
-import useVoucherStore from "store/voucher/voucher.store";
+import useRecoveryStore from "store/recovery/recovery.store";
 import { Wallet, AddressUtil } from "utils";
 import { useServices } from "services";
 import { utils } from "ethers";
@@ -27,7 +27,7 @@ export const RedeemModal: React.FC<RedeemModalProps> = (props) => {
   const [redeeming, setRedeeming] = useState(false);
   const [code, setCode] = useState("");
   const [error, setError] = useState("");
-  const { voucherDetails, setVoucherDetails, setFetching } = useVoucherStore(
+  const { recoveryDetails, setRecoveryDetails, setFetching } = useRecoveryStore(
     (state: any) => state
   );
 
@@ -36,7 +36,7 @@ export const RedeemModal: React.FC<RedeemModalProps> = (props) => {
       setError("");
       setRedeeming(true);
       setFetching(true);
-      navigate(RoutePath.voucherDetails);
+      navigate(RoutePath.recoveryDetails);
       const { id, secret } = AddressUtil.decodeSharableDigest(code!);
       const benAccount = await accountService.loginEphemeral(secret);
 
@@ -47,7 +47,7 @@ export const RedeemModal: React.FC<RedeemModalProps> = (props) => {
           privateKey: voucherSafe.data?.privateKey!,
         });
 
-        setVoucherDetails({
+        setRecoveryDetails({
           wallet: wallet,
           amount: utils.formatEther(
             (await redeemAccount.data?.getBalance()!).toString()
@@ -61,7 +61,7 @@ export const RedeemModal: React.FC<RedeemModalProps> = (props) => {
 
       setRedeeming(false);
       setFetching(false);
-      navigate(RoutePath.voucherDetails);
+      navigate(RoutePath.recoveryDetails);
     } else {
       setError("Please enter the Voucher Code");
     }

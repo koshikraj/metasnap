@@ -14,9 +14,9 @@ import {
   Send,
   Title,
 } from "../../components";
-import { IconCopy, IconNotification, IconSettings } from "@tabler/icons";
+import { IconCopy, IconBell, IconSettings } from "@tabler/icons";
 import { useStyles } from "./voucher-details.screen.styles";
-import useVoucherStore from "store/voucher/voucher.store";
+import useRecoveryStore from "store/recovery/recovery.store";
 import { useState } from "react";
 import { VoucherDetailsShimmer } from "./voucher-details.shimmer";
 import { Actions } from "./components/actions.component";
@@ -29,17 +29,17 @@ export const VoucherDetailsScreen = () => {
   const { classes } = useStyles();
 
   const navigate = useNavigate();
-  const { voucherDetails, fetching } = useVoucherStore((state: any) => state);
+  const { recoveryDetails, fetching } = useRecoveryStore((state: any) => state);
 
   const formatExpiration = () => {
     const presentTime = Date.now() / 1000;
 
     const expiresOn = ` ${new Date(
-      voucherDetails.timeStamp + voucherDetails.expirationTime * 1000
+      recoveryDetails.timeStamp + recoveryDetails.expirationTime * 1000
     ).toLocaleString()} ( ${Intl.DateTimeFormat().resolvedOptions().timeZone})`;
     const expirationTime =
-      voucherDetails.timeStamp / 1000 +
-      voucherDetails.expirationTime -
+      recoveryDetails.timeStamp / 1000 +
+      recoveryDetails.expirationTime -
       presentTime;
 
     return {
@@ -84,7 +84,7 @@ export const VoucherDetailsScreen = () => {
                     <Text color={"green"}>Network name</Text>
                   </Box>
                   <Group>
-                    <IconNotification
+                    <IconBell
                       onClick={() => navigate(RoutePath.notifications)}
                       style={{ cursor: "pointer" }}
                     />

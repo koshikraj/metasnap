@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 
 import { useNavigate } from "react-router-dom";
 import {
@@ -17,6 +17,7 @@ import {
   Loader,
   Container,
 } from "@mantine/core";
+import { SafientSnapApi, MessageStatus } from "@safient/snap-types";
 import { GoogleButton, MetaMaskButton } from "../../components";
 import { OAuthProvider } from "@magic-ext/oauth";
 
@@ -25,8 +26,10 @@ import { useStores } from "store";
 import { Errors } from "utils";
 import { RoutePath } from "navigation";
 import { StyledSpan } from "./auth.screen.styles";
+import { MetaMaskContext } from "context/metamask";
 
 export function LoginScreen(props: any) {
+  
   let navigate = useNavigate();
   const { accountService, magiclinkService, safeService } = useServices();
   const { accountStore } = useStores();
@@ -64,7 +67,7 @@ export function LoginScreen(props: any) {
       setSigningIn(true);
       const account = await accountService.login(true);
       if (account.hasData()) {
-        navigate(RoutePath.vouchers);
+        navigate(RoutePath.recovery);
       } else {
         accountStore.setError(
           account.getErrorMessage(),
@@ -118,6 +121,7 @@ export function LoginScreen(props: any) {
               couple of seconds ...
             </Text>
           </Group>
+          
         </Box>
       </Modal>
 
@@ -132,7 +136,7 @@ export function LoginScreen(props: any) {
       >
         <Paper radius="md" p="xl" sx={{ width: "500px" }} withBorder {...props}>
           <Text size="lg" weight={900}>
-            Welcome to Safient Vouchers 👋
+            Welcome to MetaSanp👋
           </Text>
 
           {errorMessage.length > 0 && (

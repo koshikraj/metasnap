@@ -12,7 +12,7 @@ import { RoutePath } from "navigation";
 import { useEffect, useState } from "react"; 
 import { useNavigate, useParams } from "react-router-dom";
 import { useServices } from "services";
-import useVoucherStore from "store/voucher/voucher.store";
+import useRecoveryStore from "store/recovery/recovery.store";
 import { VoucherDetailsShimmer } from "../voucher-details/voucher-details.shimmer";
 
 //@ts-ignore
@@ -90,7 +90,7 @@ export const RedeemVoucherScreen = () => {
   let { code } = useParams();
 
 
-  const { voucherDetails, setVoucherDetails } = useVoucherStore(
+  const { recoveryDetails, setRecoveryDetails } = useRecoveryStore(
     (state: any) => state
   );
 
@@ -118,7 +118,7 @@ export const RedeemVoucherScreen = () => {
         privateKey: voucherSafe.data?.privateKey!,
       });
 
-      setVoucherDetails({
+      setRecoveryDetails({
         wallet: wallet,
         amount: utils.formatEther(
           (await redeemAccount.data?.getBalance()!).toString()
@@ -131,7 +131,7 @@ export const RedeemVoucherScreen = () => {
     }
 
     setRedeeming(false);
-    navigate(RoutePath.voucherDetails);
+    navigate(RoutePath.recoveryDetails);
   };
 
   useEffect(() => {
